@@ -1,10 +1,10 @@
 # mqtt2ffmpeg-rtmp-ingest
 
-tl;dr: a bash wrapper to remote control `ffmpeg` RTMP ingest server 
+tl;dr: a bash wrapper to remote control `ffmpeg` acting as an RTMP ingest server.
 
 # Description
 
-I use the streaming feature of the [Blackmagic Design ATEM Mini Pro](https://www.blackmagicdesign.com/products/atemmini "Product page") to make local. I do this because I find the record-to-disk via USB inconvenient as I use the switcher as a webcam day-to-day. That would involve a lot of replugging of the USB devices as switcher would have to change USB roles between USB host (for disks) and USB device (to act as a webcam).
+I use the streaming feature of the [Blackmagic Design ATEM Mini Pro](https://www.blackmagicdesign.com/products/atemmini "Product page") to make local, file based recordings. I do this because I find the record-to-disk via USB inconvenient as I use the switcher as a webcam day-to-day. Using it as a standalone recorder (as meant to be) would involve a lot of replugging of the USB devices as the switcher would have to change USB roles between USB host (for disks) and USB device (to act as a webcam).
 
 ## Invocation
 
