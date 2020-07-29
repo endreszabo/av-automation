@@ -59,3 +59,8 @@ typings/
 
 # next.js build output
 .next
+
+#yadayada FIXME later
+touchbox2mqtt/input-event/build/
+touchbox2mqtt/input-event/example/
+
