@@ -1,0 +1,10 @@
+{
+    "name": "korg2x32",
+    "description": "korg nanoKONTROL2 x32 controller",
+    "version": "0.0.1",
+    "dependencies": {
+        "dbus-native": "^0.4.0",
+        "midi": "~1.0.0",
+        "osc": "~2.4.1"
+    }
+}
