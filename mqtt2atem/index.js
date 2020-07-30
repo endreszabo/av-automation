@@ -31,7 +31,7 @@ var multiViewVisible = false;
 myAtem.on('stateChanged', function(err, key) {
   //prevent event polluting with unsubscribed events
   if (key in AtemEvent._events)
-    AtemEvent.emit(key, objectPath.get(myAtem.state, key));
+    AtemEvent.emit(key, key, objectPath.get(myAtem.state, key));
 });
 
 mqtt.on('message', (topic, message) => {
@@ -55,13 +55,10 @@ MqttTopic.on('/touchbox2mqtt/3/longtap', function(topic, value) { myAtem.setAuxS
 MqttTopic.on('/touchbox2mqtt/4/longtap', function(topic, value) { myAtem.setAuxSource(4) });
 MqttTopic.on('/touchbox2mqtt/+/touched', function(topic, value) { myAtem.setAuxSource(9001) });
 
-AtemEvent.on('info', function(val) {
-    console.log(val);
-});
-
-AtemEvent.on('video.auxilliaries.0', function(val) {
+AtemEvent.on('video.auxilliaries.0', function(path, val) {
     //store this in the global variable
     multiViewVisible = val == 9001;
+    mqtt.publish('/atem2mqtt/44.128.4.69/'+path.replace(/\./g,'/'), JSON.stringify(val));
     console.log('Multiview visible: ', multiViewVisible);
 });
 
