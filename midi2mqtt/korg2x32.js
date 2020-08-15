@@ -306,17 +306,27 @@ mapMidiCCToSolo(34, 3);
 
 // Set up a new input.
 var midiIn = new midi.input();
-
-// Count the available input ports.
-console.log(midiIn.getPortCount());
-
-// Get the name of a specified midiIn port.
-console.log(midiIn.getPortName(2));
-
 var midiOut = new midi.output();
 
+var controllerName = 'nanoKONTROL2:nanoKONTROL2 MIDI 1 20:0';
+
+var portInToUse=null;
+var portOutToUse=null;
+
+for (port=0; port<midiIn.getPortCount(); port++) {
+	if (midiIn.getPortName(port) === controllerName) {
+		portInToUse=port; break;
+	}
+}
+
+
+for (port=0; port<midiOut.getPortCount(); port++) {
+	if (midiOut.getPortName(port) === controllerName) {
+		portOutToUse=port; break;
+	}
+}
+
 // Count the available output ports.
-midiOut.getPortCount();
 
 // Get the name of a specified midiOut port.
 console.log('will use port: ', midiOut.getPortName(2));
@@ -484,7 +494,7 @@ oscSocket.on("ready", function () {
     setInterval(sendMessages, 5000, [renew, null], oscSocket, midiOut);
 });
 
-midiIn.openPort(1);
-midiOut.openPort(1);
+midiIn.openPort(portInToUse);
+midiOut.openPort(portOutToUse);
 oscSocket.open();
 
